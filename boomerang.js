@@ -2025,9 +2025,14 @@ BOOMR_check_doc_domain();
         else {
           var index = -1,
               length = array.length,
+              arrayObject = Object(array),
               value;
 
           while (++index < length) {
+            if (!(index in arrayObject)) {
+              continue;
+            }
+
             value = array[index];
 
             if (predicate(value, index, array)) {
